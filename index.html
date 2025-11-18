@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>krisp event - Premium Wedding Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ffffff;
+            --secondary: #f8f9fa;
+            --accent: #d4af37;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --rose: #f8e0e6;
+            --text-dark: #212529;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Floating Top Header - Glass Effect */
+        .floating-header {
+            position: fixed;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 50px;
+            padding: 15px 35px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: auto;
+            min-width: 320px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .floating-header.scrolled {
+            top: 20px;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .logo span:first-child {
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo span:last-child {
+            color: var(--accent);
+            margin-left: 5px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0 1.2rem;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 5px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header Buttons - Fixed Size and Position */
+        .header-buttons {
+            position: fixed;
+            top: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        .header-buttons.scrolled {
+            top: 95px;
+        }
+
+        .header-button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            white-space: nowrap;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            width: 180px;
+            justify-content: center;
+        }
+
+        .header-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .header-button.whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .header-button.whatsapp:hover {
+            background-color: #20bd5a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .header-button.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+
+        .header-button.instagram:hover {
+            background: linear-gradient(45deg, #e0852e, #d85f35, #d2243f, #c22060, #b0167e);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.4);
+        }
+
+        /* Hero Section with 3D Carousel */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('https://www.alfaazphotography.com/wp-content/uploads/2020/05/FW-_-SA-1621-1536x1024.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 14rem 0 8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+            z-index: -1;
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        /* 3D Carousel - Smooth Circular Rotation */
+        .carousel-container {
+            width: 100%;
+            max-width: 1000px;
+            height: 500px;
+            perspective: 1200px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 350px;
+            height: 450px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transition: all 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+            transform-origin: center center;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            top: 50%;
+            left: 50%;
+            margin-top: -225px;
+            margin-left: -175px;
+            transform-style: preserve-3d;
+        }
+
+        .carousel-item.active {
+            transform: translateZ(250px) scale(1.15);
+            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4);
+            border-color: var(--accent);
+            z-index: 10;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item.active .carousel-image {
+            transform: scale(1.05);
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 2rem;
+        }
+
+        .indicator {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .indicator.active {
+            background: var(--accent);
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+        }
+
+        .indicator:hover {
+            background: rgba(212, 175, 55, 0.7);
+            transform: scale(1.2);
+        }
+
+        .hero-text {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        /* DREAM WEDDING with Full Background Effect */
+        .dream-wedding-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7);
+            font-weight: 700;
+            letter-spacing: 3px;
+            animation: fadeInUp 1.5s ease-out;
+            line-height: 1.1;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 255, 255, 0.1));
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .please-contact-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 500;
+            animation: fadeIn 2s ease-out 0.5s both;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .tagline-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 3rem;
+            font-style: italic;
+            font-weight: 400;
+            line-height: 1.4;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 2s ease-out 1s both;
+        }
+
+        /* Plan Your Wedding Button with Special Animation */
+        .plan-wedding-btn {
+            background: linear-gradient(135deg, var(--accent), #f1c40f);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-size: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            white-space: nowrap;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+            animation: pulseGlow 2.5s infinite, fadeInUp 1.5s ease-out 1.5s both;
+            z-index: 1;
+        }
+
+        .plan-wedding-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.6s;
+            z-index: -1;
+        }
+
+        .plan-wedding-btn:hover::before {
+            left: 100%;
+        }
+
+        .plan-wedding-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Wedding Event Type Animation */
+        .wedding-events {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+        }
+
+        .event-type {
+            text-align: center;
+            width: 180px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .event-type:nth-child(1) { animation-delay: 0.2s; }
+        .event-type:nth-child(2) { animation-delay: 0.4s; }
+        .event-type:nth-child(3) { animation-delay: 0.6s; }
+        .event-type:nth-child(4) { animation-delay: 0.8s; }
+
+        .event-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--accent);
+            font-size: 2.5rem;
+            color: var(--accent);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-type:hover .event-icon {
+            transform: scale(1.1);
+            background: rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .event-type h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .event-type p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(212, 175, 55, 0.7);
+            }
+            100% {
+                box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        /* Services Section with Video Backgrounds */
+        .services {
+            padding: 5rem 0;
+            background-color: var(--primary);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            border-radius: 15px;
+            padding: 2.5rem 1.5rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            border-top: 4px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            min-height: 350px;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(255, 255, 255, 0.05));
+            z-index: 0;
+            transition: all 0.3s ease;
+        }
+
+        .service-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .service-card:hover::before {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(255, 255, 255, 0.1));
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .service-card p {
+            color: #f0f0f0;
+            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            flex-grow: 1;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Background Video for Service Cards */
+        .service-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-video-bg {
+            transform: scale(1.05);
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+        .service-card:nth-child(5) { animation-delay: 0.5s; }
+        .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Gallery Section with Rotating Photos */
+        .gallery {
+            padding: 5rem 0;
+            background-color: var(--secondary);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-card {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 400px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-card:hover .gallery-image {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .gallery-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-dot.active {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background-color: var(--primary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+            line-height: 1.7;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            color: var(--gray);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .service-list i {
+            color: var(--accent);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: var(--secondary);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .contact-info p {
+            margin-bottom: 2rem;
+            color: var(--gray);
+            line-height: 1.7;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            color: var(--gray);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .contact-details i {
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-top: 3px;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-form h3 {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .submit-button:hover {
+            background: #c19d2e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: var(--text-dark);
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-dark);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Social Media Links */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.05);
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: var(--accent);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .carousel-container {
+                height: 450px;
+            }
+            
+            .carousel-item {
+                width: 300px;
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .floating-header {
+                width: 92%;
+                padding: 12px 25px;
+                top: 20px;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 85%;
+                height: calc(100vh - 80px);
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(25px) saturate(200%);
+                -webkit-backdrop-filter: blur(25px) saturate(200%);
+                transition: all 0.3s ease;
+                z-index: 999;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+                flex-direction: column;
+                padding: 2rem;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 0 0 1.5rem 0;
+            }
+
+            .header-buttons {
+                top: 105px;
+                flex-direction: row;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .header-buttons.scrolled {
+                top: 90px;
+            }
+
+            .header-button {
+                width: 180px;
+                padding: 14px 32px;
+                font-size: 0.95rem;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 12rem 0 6rem;
+            }
+
+            .hero-content {
+                gap: 1.5rem;
+            }
+
+            .dream-wedding-text {
+                font-size: 4rem;
+                padding: 15px 30px;
+            }
+
+            .please-contact-text {
+                font-size: 1.8rem;
+            }
+
+            .tagline-text {
+                font-size: 1.4rem;
+            }
+
+            .carousel-container {
+                height: 400px;
+            }
+            
+            .carousel-item {
+                width: 250px;
+                height: 350px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-buttons {
+                flex-direction: row;
+                gap: 10px;
+                top: 110px;
+            }
+            
+            .header-button {
+                width: 180px;
+                padding: 14px 32px;
+                font-size: 0.95rem;
+            }
+            
+            .dream-wedding-text {
+                font-size: 3rem;
+                padding: 10px 20px;
+            }
+            
+            .please-contact-text {
+                font-size: 1.4rem;
+            }
+            
+            .tagline-text {
+                font-size: 1.1rem;
+            }
+
+            .wedding-events {
+                gap: 15px;
+            }
+
+            .event-type {
+                width: 130px;
+            }
+
+            .event-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .carousel-container {
+                height: 350px;
+            }
+            
+            .carousel-item {
+                width: 200px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Top Header -->
+    <header class="floating-header" id="floatingHeader">
+        <div class="logo">
+            <span>KRISP</span>
+            <span>Events</span>
+        </div>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- Header Buttons - WhatsApp and Instagram -->
+    <div class="header-buttons" id="headerButtons">
+        <a href="https://wa.me/15551234567?text=Hi%20Dream%20Wedding%2C%20I%20would%20like%20to%20inquire%20about%20your%20wedding%20services" class="header-button whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            WhatsApp
+        </a>
+        <a href="https://www.instagram.com/krisp.event" class="header-button instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+            Instagram
+        </a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <!-- 3D Carousel for Images Only -->
+                <div class="carousel-container">
+                    <div class="carousel" id="featuresCarousel">
+                        <!-- Carousel items will be dynamically positioned by JavaScript -->
+                    </div>
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        <!-- Indicators will be dynamically generated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Text Content Below Carousel -->
+                <div class="hero-text">
+                    <h1 class="dream-wedding-text">DREAM WEDDING</h1>
+                    <p class="please-contact-text"></p>
+                    <p class="tagline-text"></p>
+                    
+                    <!-- Wedding Event Types -->
+                    <div class="wedding-events">
+                        <div class="event-type">
+                            <div class="event-icon">
+                                <i class="fas fa-ring"></i>
+                            </div>     
+                            <h3>Traditional</h3>
+                            <p>Classic Ceremonies</p>
+                        </div>
+                        <div class="event-type">
+                            <div class="event-icon">
+                                <i class="fas fa-umbrella-beach"></i>
+                            </div>
+                            <h3>Beach</h3>
+                            <p>Seaside Celebrations</p>
+                        </div>
+                        <div class="event-type">
+                            <div class="event-icon">
+                                <i class="fas fa-mountain"></i>
+                            </div>
+                            <h3>Destination</h3>
+                            <p>Exotic Locations</p>
+                        </div>
+                        <div class="event-type">
+                            <div class="event-icon">
+                                <i class="fas fa-glass-cheers"></i>
+                            </div>
+                            <h3>Luxury</h3>
+                            <p>Premium Experiences</p>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="plan-wedding-btn">
+                        <i class=""></i>
+                        PLEASE CONTACT
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section with Video Backgrounds -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Wedding Services</h2>
+                <p>Comprehensive services to make your special day perfect</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <video class="service-video-bg" autoplay muted loop playsinline>
+                        <source src="/cataring.mp4" type="video/mp4">
+                    </video>
+                    <div class="service-icon">
+                        <i class=""></i>
+                    </div>
+                    <h3>Catering Services</h3>
+                    <p>Exquisite culinary experiences with custom menus tailored to your taste and preferences.</p>
+                </div>
+                <div class="service-card">
+                    <video class="service-video-bg" autoplay muted loop playsinline>
+                        <source src="/event.mp4" type="video/mp4">
+                    </video>
+                    <div class="service-icon">
+                        <i class=""></i>
+                    </div>
+                    <h3>Event Management</h3>
+                    <p>Complete wedding planning and coordination to ensure a seamless and stress-free experience.</p>
+                </div>
+                <div class="service-card">
+                    <video class="service-video-bg" autoplay muted loop playsinline>
+                        <source src="/food.mp4" type="video/mp4">
+                    </video>
+                    <div class="service-icon">
+                        <i class=""></i>
+                    </div>
+                    <h3>Food and Tea</h3>
+                    <p>Premium catering services including traditional tea ceremonies and gourmet food stations.</p>
+                </div>
+                <div class="service-card">
+                    <video class="service-video-bg" autoplay muted loop playsinline>
+                        <source src="/photography.mp4" type="video/mp4">
+                    </video>
+                    <div class="service-icon">
+                        <i class=""></i>
+                    </div>
+                    <h3>Photography & Videography</h3>
+                    <p>Capture every precious moment with our professional photography and cinematic videography.</p>
+                </div>
+                <div class="service-card">
+                    <video class="service-video-bg" autoplay muted loop playsinline>
+                        <source src="https://media.istockphoto.com/id/1224104034/video/indian-or-hindu-traditional-ceremony-venue-decoration.mp4?s=mp4-640x640-is&k=20&c=sfHfbgXQkfysy_h0NQ9L8fHfAdvBvROGqvpgp2uib6Y=" type="video/mp4">
+                    </video>
+                    <div class="service-icon">
+                        <i class=""></i>
+                    </div>
+                    <h3>Stage Design</h3>
+                    <p>Breathtaking stage designs and decorations that transform your venue into a magical space.</p>
+                </div>
+                <div class="service-card">
+                    <video class="service-video-bg" autoplay muted loop playsinline>
+                        <source src="/light.mp4" type="video/mp4">
+                    </video>
+                    <div class="service-icon">
+                        <i class=""></i>
+                    </div>
+                    <h3>Light & Sound</h3>
+                    <p>Professional audio-visual equipment and lighting to create the perfect ambiance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section with Rotating Photos -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Wedding Gallery</h2>
+                <p>Browse through our recent wedding celebrations</p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery cards will be dynamically generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About krisp event</h2>
+                <p>Krisp Events transforms dreams into experiences and moments into memories. With creativity, precision, and passion — we craft events that speak, connect, and leave a lasting impression</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Your Perfect Wedding Day</h2>
+                    <p>At Dream Wedding, we specialize in creating unforgettable wedding experiences tailored to your unique vision. With years of expertise in wedding planning and coordination, we handle every detail so you can focus on enjoying your special day.</p>
+                    <p>From intimate ceremonies to grand celebrations, our team ensures flawless execution and attention to every detail.</p>
+                    <ul class="service-list">
+                        <li><i class="fas fa-check-circle"></i> Complete wedding planning and coordination</li>
+                        <li><i class="fas fa-check-circle"></i> Venue selection and decoration</li>
+                        <li><i class="fas fa-check-circle"></i> Catering and food services</li>
+                        <li><i class="fas fa-check-circle"></i> Photography and videography</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80" alt="Wedding Planning Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Plan Your Dream Wedding</h2>
+                    <p>Contact us today to start planning the wedding of your dreams. Let's create something magical together.</p>
+                    <ul class="contact-details">
+                        <li>
+                            <i class="fas fa-user"></i>
+                            <div>
+                                <strong>Your Wedding Specialist</strong><br>
+                                Professional Wedding Planner
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Phone Number</strong><br>
+                                +91 1234567890
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email Address</strong><br>
+                                info@krispevent.com
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://wa.me/15551234567?text=Hi%20Dream%20Wedding%2C%20I%20would%20like%20to%20inquire%20about%20your%20wedding%20services" class="social-link" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/krisp.event" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/dreamwedding" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Inquiry Form</h3>
+                    <form id="weddingForm">
+                        <div class="form-group">
+                            <label for="name">Couple's Names</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your names" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email Address</label>
+                            <input type="email" id="contact-email" class="form-control" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="wedding-date">Proposed Wedding Date</label>
+                            <input type="date" id="wedding-date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="guest-count">Estimated Guest Count</label>
+                            <input type="number" id="guest-count" class="form-control" placeholder="Number of guests">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Wedding Vision & Details</label>
+                            <textarea id="message" class="form-control" placeholder="Tell us about your dream wedding..." required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Wedding Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@krispevent.com</li>
+                        <li><i class="fas fa-clock"></i> All time contact</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Wedding Planning</a></li>
+                        <li><a href="#services">Photography</a></li>
+                        <li><a href="#services">Catering</a></li>
+                        <li><a href="#services">Decorations</a></li>
+                        <li><a href="#services">Entertainment</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 krisp event. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 3D Carousel Data with 6 Images
+        const carouselData = [
+            {
+                image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+            },
+            {
+                image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+            }
+        ];
+
+        // Gallery data with 4 cards, each containing 4 photos
+        const galleryData = [
+            {
+                title: "Traditional Weddings",
+                description: "Elegant ceremonies with timeless traditions",
+                photos: [
+                    'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                    'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                    'https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+                ]
+            },
+            {
+                title: "Beach Weddings",
+                description: "Romantic ceremonies by the sea",
+                photos: [
+                    'https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                    'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                    'https://images.unsplash.com/photo-1519677100203-a0e668c92439?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+                ]
+            },
+            {
+                title: "Destination Weddings",
+                description: "Exotic locations for unforgettable celebrations",
+                photos: [
+                    'https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                    'https://images.unsplash.com/photo-1511984804822-e16ba72d1c0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                    'https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                    'https://images.unsplash.com/photo-1464207687429-7505649dae38?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+                ]
+            },
+            {
+                title: "Luxury Weddings",
+                description: "Premium experiences with exquisite details",
+                photos: [
+                    'https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                    'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                    'https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80',
+                    'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
+                ]
+            }
+        ];
+
+        // 3D Carousel functionality with smooth circular rotation
+        class Carousel3D {
+            constructor(container, data) {
+                this.container = container;
+                this.carousel = container.querySelector('.carousel');
+                this.indicatorsContainer = container.querySelector('.carousel-indicators');
+                this.data = data;
+                this.currentIndex = 0;
+                this.totalItems = data.length;
+                this.autoRotateInterval = null;
+                this.rotationSpeed = 3000; // 3 seconds rotation for smoother experience
+                this.isAnimating = false;
+                
+                this.init();
+            }
+            
+            init() {
+                this.createCarouselItems();
+                this.createIndicators();
+                this.setupEventListeners();
+                this.updateDimensions();
+                this.updateCarousel();
+                this.startAutoRotation();
+                
+                // Update dimensions on window resize
+                window.addEventListener('resize', () => {
+                    this.updateDimensions();
+                    this.updateCarousel();
+                });
+            }
+            
+            createCarouselItems() {
+                this.data.forEach((item, index) => {
+                    const carouselItem = document.createElement('div');
+                    carouselItem.className = 'carousel-item';
+                    carouselItem.innerHTML = `
+                        <img src="${item.image}" alt="Wedding Image ${index + 1}" class="carousel-image">
+                    `;
+                    this.carousel.appendChild(carouselItem);
+                });
+            }
+            
+            createIndicators() {
+                this.data.forEach((_, index) => {
+                    const indicator = document.createElement('span');
+                    indicator.className = 'indicator';
+                    if (index === 0) indicator.classList.add('active');
+                    indicator.addEventListener('click', () => {
+                        if (!this.isAnimating) {
+                            this.currentIndex = index;
+                            this.updateCarousel();
+                            this.resetAutoRotation();
+                        }
+                    });
+                    this.indicatorsContainer.appendChild(indicator);
+                });
+            }
+            
+            setupEventListeners() {
+                // Pause auto-rotation on hover
+                this.container.addEventListener('mouseenter', () => {
+                    this.stopAutoRotation();
+                });
+                
+                this.container.addEventListener('mouseleave', () => {
+                    this.startAutoRotation();
+                });
+                
+                // Add click navigation to carousel items
+                this.carousel.addEventListener('click', (e) => {
+                    if (e.target.closest('.carousel-item') && !this.isAnimating) {
+                        const items = Array.from(this.carousel.querySelectorAll('.carousel-item'));
+                        const clickedIndex = items.indexOf(e.target.closest('.carousel-item'));
+                        if (clickedIndex !== -1) {
+                            this.currentIndex = clickedIndex;
+                            this.updateCarousel();
+                            this.resetAutoRotation();
+                        }
+                    }
+                });
+            }
+            
+            // Update dimensions based on screen size
+            updateDimensions() {
+                const containerWidth = this.container.offsetWidth;
+                let itemWidth, itemHeight, zDistance, xDistance;
+                
+                if (containerWidth < 576) {
+                    // Mobile phones
+                    itemWidth = 200;
+                    itemHeight = 300;
+                    zDistance = 200;
+                    xDistance = 300;
+                } else if (containerWidth < 768) {
+                    // Tablets
+                    itemWidth = 250;
+                    itemHeight = 350;
+                    zDistance = 250;
+                    xDistance = 350;
+                } else if (containerWidth < 992) {
+                    // Small desktops
+                    itemWidth = 300;
+                    itemHeight = 400;
+                    zDistance = 300;
+                    xDistance = 400;
+                } else {
+                    // Large screens
+                    itemWidth = 350;
+                    itemHeight = 450;
+                    zDistance = 300;
+                    xDistance = 450;
+                }
+                
+                // Apply dimensions to carousel items
+                const items = this.carousel.querySelectorAll('.carousel-item');
+                items.forEach(item => {
+                    item.style.width = `${itemWidth}px`;
+                    item.style.height = `${itemHeight}px`;
+                    // Update margins for centering
+                    item.style.marginTop = `-${itemHeight/2}px`;
+                    item.style.marginLeft = `-${itemWidth/2}px`;
+                });
+                
+                // Store for calculations
+                this.itemWidth = itemWidth;
+                this.itemHeight = itemHeight;
+                this.zDistance = zDistance;
+                this.xDistance = xDistance;
+            }
+            
+            updateCarousel() {
+                if (this.isAnimating) return;
+                
+                this.isAnimating = true;
+                const items = this.carousel.querySelectorAll('.carousel-item');
+                const indicators = this.indicatorsContainer.querySelectorAll('.indicator');
+                const angleStep = 360 / this.totalItems;
+                
+                items.forEach((item, index) => {
+                    const angle = angleStep * index;
+                    const z = this.zDistance;
+                    const activeAngle = angleStep * this.currentIndex;
+                    
+                    // Calculate position for 3D effect
+                    const x = Math.sin((angle * Math.PI) / 180) * this.xDistance;
+                    const zPos = Math.cos((angle * Math.PI) / 180) * z;
+                    const rotationY = -angle + activeAngle;
+                    
+                    // Apply 3D transformation
+                    item.style.transform = `
+                        translateX(${x}px) 
+                        translateZ(${zPos}px) 
+                        rotateY(${rotationY}deg)
+                        scale(${index === this.currentIndex ? 1.15 : 0.85})
+                    `;
+                    item.style.opacity = index === this.currentIndex ? '1' : '0.7';
+                    
+                    // Update active class
+                    if (index === this.currentIndex) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Update indicators
+                indicators.forEach((indicator, index) => {
+                    if (index === this.currentIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+                
+                // Reset animation flag after transition completes
+                setTimeout(() => {
+                    this.isAnimating = false;
+                }, 1500);
+            }
+            
+            nextSlide() {
+                if (this.isAnimating) return;
+                this.currentIndex = (this.currentIndex + 1) % this.totalItems;
+                this.updateCarousel();
+            }
+            
+            prevSlide() {
+                if (this.isAnimating) return;
+                this.currentIndex = (this.currentIndex - 1 + this.totalItems) % this.totalItems;
+                this.updateCarousel();
+            }
+            
+            startAutoRotation() {
+                this.autoRotateInterval = setInterval(() => {
+                    this.nextSlide();
+                }, this.rotationSpeed);
+            }
+            
+            stopAutoRotation() {
+                if (this.autoRotateInterval) {
+                    clearInterval(this.autoRotateInterval);
+                    this.autoRotateInterval = null;
+                }
+            }
+            
+            resetAutoRotation() {
+                this.stopAutoRotation();
+                this.startAutoRotation();
+            }
+        }
+
+        // Gallery functionality with photo rotation
+        class GalleryManager {
+            constructor(container, data) {
+                this.container = container;
+                this.data = data;
+                this.rotationIntervals = [];
+                
+                this.init();
+            }
+            
+            init() {
+                this.createGalleryCards();
+                this.startPhotoRotation();
+                
+                // Pause rotation on hover
+                this.container.addEventListener('mouseenter', () => {
+                    this.stopPhotoRotation();
+                });
+                
+                this.container.addEventListener('mouseleave', () => {
+                    this.startPhotoRotation();
+                });
+            }
+            
+            createGalleryCards() {
+                this.data.forEach((category, index) => {
+                    const galleryCard = document.createElement('div');
+                    galleryCard.className = 'gallery-card';
+                    galleryCard.innerHTML = `
+                        <img src="${category.photos[0]}" alt="${category.title}" class="gallery-image" data-category="${index}" data-photo-index="0">
+                        <div class="gallery-overlay">
+                            <h3>${category.title}</h3>
+                            <p>${category.description}</p>
+                        </div>
+                        <div class="gallery-controls" id="controls-${index}">
+                            ${category.photos.map((_, i) => 
+                                `<span class="gallery-dot ${i === 0 ? 'active' : ''}" data-category="${index}" data-photo-index="${i}"></span>`
+                            ).join('')}
+                        </div>
+                    `;
+                    this.container.appendChild(galleryCard);
+                });
+                
+                // Add click event listeners to photo dots
+                document.querySelectorAll('.gallery-dot').forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        const categoryIndex = parseInt(e.target.getAttribute('data-category'));
+                        const photoIndex = parseInt(e.target.getAttribute('data-photo-index'));
+                        this.showPhoto(categoryIndex, photoIndex);
+                    });
+                });
+            }
+            
+            showPhoto(categoryIndex, photoIndex) {
+                // Update the active photo dot
+                const controls = document.getElementById(`controls-${categoryIndex}`);
+                controls.querySelectorAll('.gallery-dot').forEach((dot, index) => {
+                    if (index === photoIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+                
+                // Update the photo
+                const photo = document.querySelector(`.gallery-image[data-category="${categoryIndex}"]`);
+                photo.src = this.data[categoryIndex].photos[photoIndex];
+                photo.setAttribute('data-photo-index', photoIndex);
+            }
+            
+            startPhotoRotation() {
+                // Clear any existing intervals
+                this.stopPhotoRotation();
+                
+                // Set up rotation for each gallery card
+                this.data.forEach((category, categoryIndex) => {
+                    let currentPhotoIndex = 0;
+                    
+                    const interval = setInterval(() => {
+                        currentPhotoIndex = (currentPhotoIndex + 1) % category.photos.length;
+                        this.showPhoto(categoryIndex, currentPhotoIndex);
+                    }, 3000); // Rotate every 3 seconds
+                    
+                    this.rotationIntervals.push(interval);
+                });
+            }
+            
+            stopPhotoRotation() {
+                this.rotationIntervals.forEach(interval => {
+                    clearInterval(interval);
+                });
+                this.rotationIntervals = [];
+            }
+        }
+
+        // Initialize the 3D Carousel and Gallery when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselContainer = document.querySelector('.carousel-container');
+            const carousel3D = new Carousel3D(carouselContainer, carouselData);
+            
+            // Initialize the gallery
+            const galleryGrid = document.getElementById('galleryGrid');
+            const galleryManager = new GalleryManager(galleryGrid, galleryData);
+            
+            // Floating header scroll effect
+            window.addEventListener('scroll', function() {
+                const header = document.getElementById('floatingHeader');
+                const headerButtons = document.getElementById('headerButtons');
+                
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                    headerButtons.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                    headerButtons.classList.remove('scrolled');
+                }
+            });
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Contact form submission
+            document.getElementById('weddingForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your wedding inquiry! We will contact you soon to discuss your dream wedding.');
+                this.reset();
+            });
+
+            console.log('Dream Wedding website loaded successfully!');
+        });
+    </script>
+</body>
+</html>

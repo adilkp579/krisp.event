@@ -1,0 +1,66 @@
+<!-- scroll-video.html -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Scroll Controlled Video</title>
+  <style>
+    body{ margin:0; height:300vh; background:#000; color:#fff; }
+    .video-wrap { position:sticky; top:10vh; height:80vh; display:flex; align-items:center; justify-content:center; }
+    video { width:70%; max-width:1000px; }
+  </style>
+</head>
+<body>
+  <div style="height:120vh"></div> <!-- spacer before -->
+  <div class="video-wrap">
+    <video id="vid" preload="auto" muted>
+      <source src="video.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div style="height:120vh"></div> <!-- spacer after -->
+
+  <script>
+    const video = document.getElementById('vid');
+
+    // ensure metadata loaded to access duration
+    video.addEventListener('loadedmetadata', () => {
+      // no autoplay; we'll control currentTime
+    });
+
+    let latestScroll = 0;
+    let ticking = false;
+
+    window.addEventListener('scroll', () => {
+      latestScroll = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          syncVideoToScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
+
+    function syncVideoToScroll(){
+      const wrap = document.querySelector('.video-wrap');
+      const rect = wrap.getBoundingClientRect();
+      const vpH = window.innerHeight;
+
+      // When the sticky video is in viewport, compute progress 0..1
+      const start = -rect.height; // you can tune start/end
+      const end = vpH;
+      // better: compute how much of the sticky region scrolled:
+      // Here we map rect.top from (vpH -> -rect.height) to 0..1
+      let progress = (vpH - rect.top) / (vpH + rect.height);
+      progress = clamp(progress, 0, 1);
+
+      if (video.duration) {
+        video.currentTime = video.duration * progress;
+      }
+    }
+  </script>
+</body>
+</html>
