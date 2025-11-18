@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>krisp event - Premium Wedding Services</title>
+    <title>Krisp Events - Premium Wedding Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -246,11 +246,11 @@
             gap: 2rem;
         }
 
-        /* 3D Carousel - Smooth Circular Rotation */
+        /* 3D Carousel - Optimized for all screen sizes */
         .carousel-container {
             width: 100%;
-            max-width: 1000px;
-            height: 500px;
+            max-width: 900px;
+            height: 400px;
             perspective: 1200px;
             margin: 0 auto 3rem;
             position: relative;
@@ -266,10 +266,10 @@
 
         .carousel-item {
             position: absolute;
-            width: 350px;
-            height: 450px;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            width: 280px;
+            height: 360px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             transition: all 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
             transform-origin: center center;
             overflow: hidden;
@@ -277,14 +277,14 @@
             cursor: pointer;
             top: 50%;
             left: 50%;
-            margin-top: -225px;
-            margin-left: -175px;
+            margin-top: -180px;
+            margin-left: -140px;
             transform-style: preserve-3d;
         }
 
         .carousel-item.active {
-            transform: translateZ(250px) scale(1.15);
-            box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4);
+            transform: translateZ(180px) scale(1.15);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.4);
             border-color: var(--accent);
             z-index: 10;
         }
@@ -308,8 +308,8 @@
         }
 
         .indicator {
-            width: 14px;
-            height: 14px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.4);
             cursor: pointer;
@@ -337,7 +337,7 @@
         /* DREAM WEDDING with Full Background Effect */
         .dream-wedding-text {
             font-family: 'Dancing Script', cursive;
-            font-size: 5.5rem;
+            font-size: 4.5rem;
             color: white;
             margin-bottom: 1.5rem;
             text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7);
@@ -355,7 +355,7 @@
 
         .please-contact-text {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
             color: var(--accent);
             margin-bottom: 2rem;
             letter-spacing: 4px;
@@ -367,7 +367,7 @@
 
         .tagline-text {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: white;
             margin-bottom: 3rem;
             font-style: italic;
@@ -660,7 +660,7 @@
         .gallery-card {
             border-radius: 15px;
             overflow: hidden;
-            height: 400px;
+            height: 350px;
             position: relative;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
@@ -987,18 +987,76 @@
             color: white;
         }
 
-        /* Responsive Design */
-        @media (max-width: 992px) {
+        /* Enhanced responsive styles for the carousel */
+        @media (max-width: 576px) {
             .carousel-container {
-                height: 450px;
+                height: 280px;
+                perspective: 800px;
             }
             
             .carousel-item {
-                width: 300px;
-                height: 400px;
+                width: 180px !important;
+                height: 230px !important;
+                margin-top: -115px !important;
+                margin-left: -90px !important;
+            }
+            
+            .carousel-indicators {
+                margin-top: 1rem;
+            }
+            
+            .indicator {
+                width: 10px;
+                height: 10px;
             }
         }
 
+        @media (max-width: 768px) {
+            .carousel-container {
+                height: 320px;
+            }
+            
+            .carousel-item {
+                width: 220px !important;
+                height: 280px !important;
+                margin-top: -140px !important;
+                margin-left: -110px !important;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .carousel-container {
+                height: 350px;
+            }
+            
+            .carousel-item {
+                width: 240px !important;
+                height: 300px !important;
+                margin-top: -150px !important;
+                margin-left: -120px !important;
+            }
+        }
+
+        /* Ensure the carousel container adapts to its content */
+        .carousel-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Improve touch interaction on mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .carousel-item {
+                cursor: default;
+            }
+            
+            .carousel-container:hover .carousel-item {
+                transform: none;
+            }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .floating-header {
                 width: 92%;
@@ -1062,25 +1120,16 @@
             }
 
             .dream-wedding-text {
-                font-size: 4rem;
+                font-size: 3.5rem;
                 padding: 15px 30px;
             }
 
             .please-contact-text {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
             .tagline-text {
-                font-size: 1.4rem;
-            }
-
-            .carousel-container {
-                height: 400px;
-            }
-            
-            .carousel-item {
-                width: 250px;
-                height: 350px;
+                font-size: 1.2rem;
             }
         }
 
@@ -1098,16 +1147,16 @@
             }
             
             .dream-wedding-text {
-                font-size: 3rem;
+                font-size: 2.5rem;
                 padding: 10px 20px;
             }
             
             .please-contact-text {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
             }
             
             .tagline-text {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
 
             .wedding-events {
@@ -1122,15 +1171,6 @@
                 width: 80px;
                 height: 80px;
                 font-size: 2rem;
-            }
-
-            .carousel-container {
-                height: 350px;
-            }
-            
-            .carousel-item {
-                width: 200px;
-                height: 300px;
             }
         }
     </style>
@@ -1185,8 +1225,8 @@
                 <!-- Text Content Below Carousel -->
                 <div class="hero-text">
                     <h1 class="dream-wedding-text">DREAM WEDDING</h1>
-                    <p class="please-contact-text"></p>
-                    <p class="tagline-text"></p>
+                    <p class="please-contact-text">Crafting Unforgettable Moments</p>
+                    <p class="tagline-text">Where dreams meet perfection and every detail tells your story</p>
                     
                     <!-- Wedding Event Types -->
                     <div class="wedding-events">
@@ -1221,7 +1261,7 @@
                     </div>
                     
                     <a href="#contact" class="plan-wedding-btn">
-                        <i class=""></i>
+                        <i class="fas fa-heart"></i>
                         PLEASE CONTACT
                     </a>
                 </div>
@@ -1239,60 +1279,60 @@
             <div class="services-grid">
                 <div class="service-card">
                     <video class="service-video-bg" autoplay muted loop playsinline>
-                        <source src="cataring.mp4" type="video/mp4">
+                        <source src="https://cdn.pixabay.com/video/2023/04/20/160456-817443680_large.mp4" type="video/mp4">
                     </video>
                     <div class="service-icon">
-                        <i class=""></i>
+                        <i class="fas fa-utensils"></i>
                     </div>
                     <h3>Catering Services</h3>
                     <p>Exquisite culinary experiences with custom menus tailored to your taste and preferences.</p>
                 </div>
                 <div class="service-card">
                     <video class="service-video-bg" autoplay muted loop playsinline>
-                        <source src="event.mp4" type="video/mp4">
+                        <source src="https://cdn.pixabay.com/video/2022/03/31/113500-689858732_large.mp4" type="video/mp4">
                     </video>
                     <div class="service-icon">
-                        <i class=""></i>
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
                     <h3>Event Management</h3>
                     <p>Complete wedding planning and coordination to ensure a seamless and stress-free experience.</p>
                 </div>
                 <div class="service-card">
                     <video class="service-video-bg" autoplay muted loop playsinline>
-                        <source src="food.mp4" type="video/mp4">
+                        <source src="https://cdn.pixabay.com/video/2023/01/26/152657-799424323_large.mp4" type="video/mp4">
                     </video>
                     <div class="service-icon">
-                        <i class=""></i>
+                        <i class="fas fa-coffee"></i>
                     </div>
                     <h3>Food and Tea</h3>
                     <p>Premium catering services including traditional tea ceremonies and gourmet food stations.</p>
                 </div>
                 <div class="service-card">
                     <video class="service-video-bg" autoplay muted loop playsinline>
-                        <source src="photography.mp4" type="video/mp4">
+                        <source src="https://cdn.pixabay.com/video/2022/10/30/138323-754900339_large.mp4" type="video/mp4">
                     </video>
                     <div class="service-icon">
-                        <i class=""></i>
+                        <i class="fas fa-camera"></i>
                     </div>
                     <h3>Photography & Videography</h3>
                     <p>Capture every precious moment with our professional photography and cinematic videography.</p>
                 </div>
                 <div class="service-card">
                     <video class="service-video-bg" autoplay muted loop playsinline>
-                        <source src="https://media.istockphoto.com/id/1224104034/video/indian-or-hindu-traditional-ceremony-venue-decoration.mp4?s=mp4-640x640-is&k=20&c=sfHfbgXQkfysy_h0NQ9L8fHfAdvBvROGqvpgp2uib6Y=" type="video/mp4">
+                        <source src="https://cdn.pixabay.com/video/2022/03/31/113500-689858732_large.mp4" type="video/mp4">
                     </video>
                     <div class="service-icon">
-                        <i class=""></i>
+                        <i class="fas fa-palette"></i>
                     </div>
                     <h3>Stage Design</h3>
                     <p>Breathtaking stage designs and decorations that transform your venue into a magical space.</p>
                 </div>
                 <div class="service-card">
                     <video class="service-video-bg" autoplay muted loop playsinline>
-                        <source src="light.mp4" type="video/mp4">
+                        <source src="https://cdn.pixabay.com/video/2023/04/20/160456-817443680_large.mp4" type="video/mp4">
                     </video>
                     <div class="service-icon">
-                        <i class=""></i>
+                        <i class="fas fa-lightbulb"></i>
                     </div>
                     <h3>Light & Sound</h3>
                     <p>Professional audio-visual equipment and lighting to create the perfect ambiance.</p>
@@ -1318,7 +1358,7 @@
     <section class="about" id="about">
         <div class="container">
             <div class="section-title">
-                <h2>About krisp</h2>
+                <h2>About krisp event</h2>
                 <p>Krisp Events transforms dreams into experiences and moments into memories. With creativity, precision, and passion — we craft events that speak, connect, and leave a lasting impression</p>
             </div>
             <div class="about-content">
@@ -1458,22 +1498,22 @@
         // 3D Carousel Data with 6 Images
         const carouselData = [
             {
-                image: 'image1.jpg'
+                image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
             },
             {
-                image: 'image2.jpg'
+                image: 'https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
             },
             {
-                image: 'image3.jpg'
+                image: 'https://images.unsplash.com/photo-1551244072-5b4aa7a1d6c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
             },
             {
-                image: 'image4.jpg'
+                image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
             },
             {
-                image: 'image5.jpg'
+                image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
             },
             {
-                image: 'image6.jpeg'
+                image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'
             }
         ];
 
@@ -1521,7 +1561,7 @@
             }
         ];
 
-        // 3D Carousel functionality with smooth circular rotation
+        // Enhanced 3D Carousel functionality with better responsive behavior
         class Carousel3D {
             constructor(container, data) {
                 this.container = container;
@@ -1531,8 +1571,16 @@
                 this.currentIndex = 0;
                 this.totalItems = data.length;
                 this.autoRotateInterval = null;
-                this.rotationSpeed = 3000; // 3 seconds rotation for smoother experience
+                this.rotationSpeed = 3000;
                 this.isAnimating = false;
+                
+                // Responsive breakpoints
+                this.breakpoints = {
+                    xs: 576,   // Mobile phones
+                    sm: 768,   // Tablets
+                    md: 992,   // Small desktops
+                    lg: 1200   // Large screens
+                };
                 
                 this.init();
             }
@@ -1545,14 +1593,20 @@
                 this.updateCarousel();
                 this.startAutoRotation();
                 
-                // Update dimensions on window resize
+                // Update dimensions on window resize with debounce
+                let resizeTimeout;
                 window.addEventListener('resize', () => {
-                    this.updateDimensions();
-                    this.updateCarousel();
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(() => {
+                        this.updateDimensions();
+                        this.updateCarousel();
+                    }, 250);
                 });
             }
             
             createCarouselItems() {
+                this.carousel.innerHTML = ''; // Clear any existing items
+                
                 this.data.forEach((item, index) => {
                     const carouselItem = document.createElement('div');
                     carouselItem.className = 'carousel-item';
@@ -1564,6 +1618,8 @@
             }
             
             createIndicators() {
+                this.indicatorsContainer.innerHTML = ''; // Clear any existing indicators
+                
                 this.data.forEach((_, index) => {
                     const indicator = document.createElement('span');
                     indicator.className = 'indicator';
@@ -1601,37 +1657,67 @@
                         }
                     }
                 });
+                
+                // Touch events for mobile
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                this.container.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                
+                this.container.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    this.handleSwipe();
+                }, { passive: true });
+            }
+            
+            handleSwipe() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (Math.abs(swipeDistance) < swipeThreshold) return;
+                
+                if (swipeDistance > 0) {
+                    // Swipe right - previous slide
+                    this.prevSlide();
+                } else {
+                    // Swipe left - next slide
+                    this.nextSlide();
+                }
             }
             
             // Update dimensions based on screen size
             updateDimensions() {
                 const containerWidth = this.container.offsetWidth;
+                const containerHeight = this.container.offsetHeight;
+                
                 let itemWidth, itemHeight, zDistance, xDistance;
                 
-                if (containerWidth < 576) {
+                if (containerWidth < this.breakpoints.xs) {
                     // Mobile phones
-                    itemWidth = 200;
-                    itemHeight = 300;
-                    zDistance = 200;
-                    xDistance = 300;
-                } else if (containerWidth < 768) {
+                    itemWidth = Math.min(containerWidth * 0.7, 180);
+                    itemHeight = Math.min(containerHeight * 0.7, 230);
+                    zDistance = 120;
+                    xDistance = 160;
+                } else if (containerWidth < this.breakpoints.sm) {
                     // Tablets
-                    itemWidth = 250;
-                    itemHeight = 350;
-                    zDistance = 250;
-                    xDistance = 350;
-                } else if (containerWidth < 992) {
+                    itemWidth = Math.min(containerWidth * 0.6, 220);
+                    itemHeight = Math.min(containerHeight * 0.7, 280);
+                    zDistance = 150;
+                    xDistance = 200;
+                } else if (containerWidth < this.breakpoints.md) {
                     // Small desktops
-                    itemWidth = 300;
-                    itemHeight = 400;
-                    zDistance = 300;
-                    xDistance = 400;
+                    itemWidth = Math.min(containerWidth * 0.5, 240);
+                    itemHeight = Math.min(containerHeight * 0.7, 300);
+                    zDistance = 160;
+                    xDistance = 220;
                 } else {
-                    // Large screens
-                    itemWidth = 350;
-                    itemHeight = 450;
-                    zDistance = 300;
-                    xDistance = 450;
+                    // Large screens - Reduced size as requested
+                    itemWidth = Math.min(containerWidth * 0.3, 280);
+                    itemHeight = Math.min(containerHeight * 0.7, 360);
+                    zDistance = 180;
+                    xDistance = 250;
                 }
                 
                 // Apply dimensions to carousel items
@@ -1649,6 +1735,13 @@
                 this.itemHeight = itemHeight;
                 this.zDistance = zDistance;
                 this.xDistance = xDistance;
+                
+                // Adjust perspective for better 3D effect on mobile
+                if (containerWidth < this.breakpoints.sm) {
+                    this.carousel.style.perspective = '800px';
+                } else {
+                    this.carousel.style.perspective = '1200px';
+                }
             }
             
             updateCarousel() {
